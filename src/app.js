@@ -42,7 +42,7 @@ function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
-  let windElement = document.querySelector("#wind");
+  let windElement = document.querySelector("#wind-speed");
   let dateElement = document.querySelector("#date");
   let cityElement = document.querySelector("#city");
   let iconElement = document.querySelector("#icon");
@@ -62,7 +62,19 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "aa09763d916df0424c840d55bfc2d2c9";
-let city = "Opole";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(displayTemperature);
+function search(city) {
+  let apiKey = "aa09763d916df0424c840d55bfc2d2c9";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Opole");
