@@ -90,3 +90,7 @@ li:first-letter {
 .weather-forecast-temperatures {
   font-size: 13px;
 }
+
+.mb-3 {
+  margin-top: 15px;
+}
