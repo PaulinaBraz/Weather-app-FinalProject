@@ -37,7 +37,7 @@ function formatDay(timestamp) {
 
   return days[day];
 }
-function displayForecast(response) {
+function showForecast(response) {
   let forecast = response.data.daily;
 
   let forecastElement = document.querySelector("#forecast");
@@ -77,10 +77,10 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   let apiKey = "aa09763d916df0424c840d55bfc2d2c9";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(showForecast);
 }
 
-function displayTemperature(response) {
+function displayTemp(response) {
   let temperatureElement = document.querySelector("#temperature");
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
@@ -109,7 +109,7 @@ function displayTemperature(response) {
 function search(city) {
   let apiKey = "aa09763d916df0424c840d55bfc2d2c9";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayTemp);
 }
 
 function handleSubmit(event) {
@@ -146,4 +146,4 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celsiusLink = document.querySelector("#c-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
-search("Opole");
+search("Porto");
